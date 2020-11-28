@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.login__container{
+    margin:100px auto;
+    background-color:white;
+    width: 350px;
+    height: auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 10px 1px #ddd, 0 10px 20px #ccc;
+}
+
+.login__heading{
+    color:dodgerblue;
+    font-family: 'Roboto';
+}
+
+.login__input{
+    width: 90%;
+    padding:12px 16px;
+    color:black;
+    font-family: 'Roboto',Verdana, Geneva, Tahoma, sans-serif;
+    margin: 10px 0px;
+    outline: 0;
+    border: none;
+    font-size: 18px;
+    border:1px solid grey;
+}
+
+.login__btn{
+    background-color:dodgerblue;
+    width: 140px;
+    outline: 0;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 6px;
+    outline: 0;
+    color: white;
+    padding: 10px 14px;
+    border: none;
+    font-family: 'Roboto','Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.login__link{
+    text-decoration: underline;
+    color: dodgerblue;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    font-family: 'Roboto';
+}
