@@ -11,7 +11,8 @@ export const get_brand = (brands) => ({
 export const show_brand = () => async (dispatch) => {
     await axios.get('http://127.0.0.1:5000/get/brands/')
     .then( res => {
-        dispatch(get_brand(['nokia','oppo']));
+        console.log(res.data.brands);
+        dispatch(get_brand(res.data.brands));
     })
     .catch( err => {
         console.log(err);

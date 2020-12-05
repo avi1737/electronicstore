@@ -8,6 +8,8 @@ import { BrowserRouter, BrowserRouter as Router,
 import SignUp from './auth/pages/SignUp';
 import Home from './Home';
 import Admin from './Admin/components/Admin';
+import Cart from './Cart/Cart';
+import UniqueProduct from './Products/pages/UniqueProduct';
 
 
 function App() {
@@ -22,7 +24,10 @@ function App() {
         <Route path = '/Admin'>
           <Admin/>
         </Route>
-        
+
+        <Route exact path = '/Cart' component = {Cart}/>
+
+        <Route exact path = '/:id' component = {UniqueProduct} />    
       </Switch>  
     </div>
     </BrowserRouter>

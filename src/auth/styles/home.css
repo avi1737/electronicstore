@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
+.top__navbar {
+    width: 100%;
+    height: 30px;
+    color: white;
+    background-color: black;
+    display: flex;
+    justify-content: space-around;
+    font-size: 14px;
+    align-items: center;
+    font-family: 'Open Sans';
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+}
+.top__navbar__link {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    border-left: 1px solid white;
+    padding: 0px 10px;
+    font-family: 'Open Sans';
+}
+
+.main__navbar {
+    width: 100%;
+    height: 45px;
+    box-shadow: 0px 0px 2px black;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-family: 'Open Sans';
+    position: fixed;
+    left: 0;
+    background-color: white;
+    top: 30px;
+}
+
+.cart__icon{
+    cursor: pointer;
+}
+
+.main__navbar ul {
+    list-style: none;
+}
+
+.corousel__image {
+    width: 100%;
+    height: 700px;
+}
+
+.corousel__image img{
+    width: 100%;
+    height: 100%;
+    z-index: -100;
+}
+
+.main__navbar__link {
+    color: black;
+    text-decoration: none;
+    font-family: 'Open Sans';
+    display: inline-block;
+    margin: 0px 20px;
+}
+
+.main__navbar__link:hover{
+    border-bottom: 2px solid black;
+}
+
+.products__container {
+    width: 100%;
+    margin:100px auto;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap:20px;
+    height: 200px;
+}

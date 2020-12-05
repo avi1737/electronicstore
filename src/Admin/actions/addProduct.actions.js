@@ -18,11 +18,9 @@ export const add_product_failure = () => ({
 
 
 export const add_product = (add_product_data) => async (dispatch) => {
-
     dispatch(add_product_request());
     axios.post('http://127.0.0.1:5000/add/product/', add_product_data)
     .then( res => {
-        console.log(res.data);
         if( res.data.message === "success"){
             dispatch(add_product_success());
         }

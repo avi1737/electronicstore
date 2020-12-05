@@ -1,76 +1,58 @@
-import React from 'react';
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import { withStyles ,MenuItem,IconButton, Badge} from '@material-ui/core';
+import { Badge, Typography } from '@material-ui/core';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { show_category } from '../../Admin/actions/action';
+import '../styles/home.css';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import PersonIcon from '@material-ui/icons/Person';
-import SettingsIcon from '@material-ui/icons/Settings';
-import { useHistory } from 'react-router-dom';
 
 
-const StyledAppBar = withStyles({
-    root:{
-        backgroundColor:"#047BD5",
-        color:"white",
-        justifyContent:"center",
-        alignItems:"right"
-    }
-})(AppBar);
 
 const Header = (props) => {
 
-    const history = useHistory();
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const categories = useSelector( state => state.CategoryReducerState.items);
+  const cartitems = useSelector( state => state.CartReducerState.items);
 
-    const redirectToCart = () => {
-        const url = '/Cart';
-        history.push(url);
-    }
 
-    const redirectToMyAccount = () => {
-        const url = '/Account';
-        history.push(url);
-    }
+  useEffect(()=> {
+    dispatch(show_category());
+  },[]);
 
-    return(
-        <>
-        <StyledAppBar>
-        <Toolbar>
-            
-          <Typography>
-            { props.heading }
-          </Typography>
+  const openCart = () => {
+    let url = '/Cart'
+    history.push(url);
+  }
 
-          <IconButton aria-label="cart">
-        <Badge badgeContent={1} color="secondary">
-         <ShoppingCartIcon  style = {{ color:"white"}} onClick = {redirectToCart}/>
-         </Badge>
-         </IconButton>
+  return (
+    <>
+    <div className='top__navbar'>
+      <div className='top__navbar__text'>
+        <p>welcome to online electronic store</p>
+      </div>
+      <div className = 'top__navbar__links'>
+        <Link to = '/Login' className = 'top__navbar__link'>Sign In</Link>
+        <Link to = '/SignUp'className = 'top__navbar__link'>Register</Link>
+      </div>
+    </div>
 
-        
-         <IconButton aria-label="cart">
-        <Badge color="secondary">
-         <PersonIcon style = {{ color:"white"}} onClick = {redirectToMyAccount}/>
-         </Badge>
-         </IconButton>
-
-         <IconButton aria-label="cart">
-        <Badge color="secondary">
-         <SettingsIcon style = {{ color:"white"}} onClick = {redirectToMyAccount}/>
-         </Badge>
-         </IconButton>
-
-         <IconButton aria-label="cart">
-        <Badge badgeContent = {2} color="secondary">
-         <NotificationsIcon style = {{ color:"white"}} onClick = {redirectToMyAccount}/>
-         </Badge>
-         </IconButton>
-
-        </Toolbar>
-      </StyledAppBar>
-        </>
-    )
+    <div className = 'main__navbar'>
+      <div>
+      <ul>
+      { 
+      categories.map( (category) => <Link className = 'main__navbar__link' to = {`/${category.title}`}>{category.title}</Link>)
+      }
+      </ul>
+      </div>
+      <div>
+      <Badge badgeContent={cartitems.length} color="secondary">
+      <ShoppingCartIcon className = 'cart__icon' onClick = {() => openCart()} />
+      </Badge>
+      </div>
+    </div>
+    </>
+  )
 }
 
 export default Header;

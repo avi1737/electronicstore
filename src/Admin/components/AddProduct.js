@@ -16,26 +16,19 @@ const AddProduct = () => {
     const [productDesc,setProductDesc] = useState("");
     const [productQuantity,setProductQuantity] = useState(0);
     const [productCategory,setProductCategory] = useState("Mobiles");
-    const [productBrand,setProductBrand] = useState("");
-    const [pictures,setProductPictures] = useState(null);
-    const [imageArray,setImageArray] = useState([]);
+    const [productBrand,setProductBrand] = useState("Samsung");
 
-    useEffect(() => {
-        dispatch(show_category()); 
-        dispatch(show_brand());
-    },[]);
+
 
     const category = useSelector( state => state.CategoryReducerState.items);
     const brands = useSelector( state => state.BrandReducerState.brands);
     const addProductButton = useSelector( state => state.AddProductReducerState.addProductButton);
 
-    const handleImages = (e) => {
-        let temp_arr = [];
-        for(let i = 0; i < e.target.files.length ; i++){
-            temp_arr.push(URL.createObjectURL(e.target.files[i]));
-        }
-        setImageArray(temp_arr);
-    }
+    
+    useEffect(() => {
+        dispatch(show_category()); 
+        dispatch(show_brand());
+    },[]);
 
 
     const add_product_data = {
@@ -46,8 +39,9 @@ const AddProduct = () => {
         discount:productDiscount,
         discountprice:productDiscountPrice,
         desc:productDesc,
-        quantity:productQuantity
+        quantity:productQuantity,
     }
+
 
     return(
         <>
@@ -82,14 +76,10 @@ const AddProduct = () => {
             <label>Select Brand</label>
             <select onChange = { (e) => setProductBrand(e.target.value)} value = {productBrand}>
                 {
-                    brands.map( brand => <option value = {brand}>{brand}</option>)
+                    brands.map( brand => <option value = {brand.name}>{brand.name}</option>)
                 }
             </select>
-
-            <input type = 'file' onChange = { handleImages } multiple="multiple"></input>
-            {
-                imageArray.map( location => <img src = {location} className = 'preview__image'/>)
-            }
+            
             
         <button className='product__add__button' onClick = { () => dispatch(add_product(add_product_data))}>{addProductButton}</button>
         </div>
